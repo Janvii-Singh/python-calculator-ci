@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Static Calculator</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 20px;
+    }
+    input, select, button {
+      margin: 10px;
+      padding: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Static JavaScript Calculator</h1>
+
+  <input type="number" id="num1" placeholder="Enter first number">
+  <input type="number" id="num2" placeholder="Enter second number">
+  
+  <select id="operation">
+    <option value="add">Add</option>
+    <option value="subtract">Subtract</option>
+    <option value="multiply">Multiply</option>
+    <option value="divide">Divide</option>
+  </select>
+
+  <br>
+  <button onclick="calculate()">Calculate</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculate() {
+      const a = parseFloat(document.getElementById("num1").value);
+      const b = parseFloat(document.getElementById("num2").value);
+      const op = document.getElementById("operation").value;
+      let res;
+
+      if (isNaN(a) || isNaN(b)) {
+        res = "Please enter valid numbers.";
+      } else {
+        switch(op) {
+          case "add": res = a + b; break;
+          case "subtract": res = a - b; break;
+          case "multiply": res = a * b; break;
+          case "divide":
+            if (b === 0) {
+              res = "Cannot divide by zero.";
+            } else {
+              res = a / b;
+            }
+            break;
+          default:
+            res = "Unknown operation.";
+        }
+      }
+
+      document.getElementById("result").innerText = "Result: " + res;
+    }
+  </script>
+</body>
+</html>
